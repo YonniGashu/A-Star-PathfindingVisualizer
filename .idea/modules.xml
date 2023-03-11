@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/A-Star-PathfindingVisualizer.iml" filepath="$PROJECT_DIR$/A-Star-PathfindingVisualizer.iml" />
       <module fileurl="file://$PROJECT_DIR$/PathfindingVisualizer.iml" filepath="$PROJECT_DIR$/PathfindingVisualizer.iml" />
     </modules>
   </component>
