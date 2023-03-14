@@ -34,7 +34,7 @@ public class Grid extends JPanel {
             }
         }
 
-        node[0][0].setStartNode();
-        node[10][9].setGoalNode();
+//        node[0][0].setStartNode();
+//        node[10][9].setGoalNode();
     }
 }
