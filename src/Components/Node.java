@@ -18,14 +18,16 @@ public class Node extends JButton implements ActionListener, KeyListener{
         this.row = row;
         this.col = col;
         this.setBorderPainted(true);
+        setFocusable(true);
+        setEnabled(true);
+        requestFocusInWindow();
+        setRolloverEnabled(true);
         addActionListener(this);
         addKeyListener(this);
         addMouseListener(ma);
     }
 
-
     public void setGoalNode(){
-
         setBackground(Color.green);
         setOpaque(true);
         setBorder(new LineBorder(Color.BLACK, 4, true));
@@ -58,23 +60,47 @@ public class Node extends JButton implements ActionListener, KeyListener{
         removeMouseListener(ma);
     }
 
+    public static boolean isKeyPressed(KeyEvent e, int keyCode) {
+        return (e.getKeyCode() == keyCode && e.getID() == KeyEvent.KEY_PRESSED);
+    }
+
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_E){
-            System.out.println("yur");
-            setStartNode();
-        }
-        if(e.getKeyCode() == KeyEvent.VK_Q){
-            System.out.println("bru");
-            setGoalNode();
+//        if (getModel().isEnabled() && getModel().isRollover()) {
+//            setBackground(Color.BLUE);
+//        }else{
+//            System.out.println(getModel().isRollover());
+//        }
+        checkEvent(e);
+    }
+
+    public void checkEvent(InputEvent inputEvent){
+        if(inputEvent.getID() == KeyEvent.KEY_PRESSED && inputEvent.getID() == MouseEvent.MOUSE_ENTERED) {
+            System.out.println("yo");
         }
     }
 
     MouseAdapter ma = new MouseAdapter() {
         @Override
         public void mouseEntered(MouseEvent e) {
-            setBackground(Color.yellow);
-            super.mouseEntered(e);
+//            if (e.getSource() == Node.this && getModel().isEnabled() &&  isKeyPressed(, KeyEvent.VK_E)) {
+                  checkEvent(e);
+//                setBackground(Color.RED);
+//            }
+        }
+
+        @Override
+        public void mouseExited(MouseEvent event) // Or any other mouse event handler...
+        {
+            int buttonsDownMask = MouseEvent.BUTTON1_DOWN_MASK;
+            if ((event.getModifiersEx() & buttonsDownMask) != 0 ){
+                setBackground(Color.blue);
+                setOpaque(true);
+                setBorder(new LineBorder(Color.BLACK, 4, true));
+                removeActionListener(Node.this);
+                removeKeyListener(Node.this);
+                removeMouseListener(ma);
+            }
         }
     };
 

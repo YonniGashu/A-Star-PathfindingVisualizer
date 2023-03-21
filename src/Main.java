@@ -12,7 +12,6 @@ public class Main {
         window.setVisible(true);
         window.setResizable(false);
         window.setLocationRelativeTo(null);
-
     }
 }
 
